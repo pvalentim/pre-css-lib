@@ -3,5 +3,5 @@ less-lib
 
 Personal LESS mixins collection
 
-_Mixins_
+__Mixins__
 * Paper Shadow Effect
