@@ -1,0 +1,29 @@
+.paper-shadow {
+   position: relative;
+   &:after, &:before {
+      z-index: -1;
+      content: '';
+      width: 50%;
+      position: absolute;
+      top: 80%;
+      bottom: 15px;
+      box-shadow: 0 15px 8px #c7c9c7;
+      background: #c7c9c7;
+   }
+
+   &:after {
+      -webkit-transform: rotate(3deg);
+      -moz-transform: rotate(3deg);
+      transform: rotate(3deg);
+      right: 10px;
+      left: auto;
+   }
+
+   &:before {
+      -webkit-transform: rotate(-3deg);
+      -moz-transform: rotate(-3deg);
+      transform: rotate(-3deg);
+      left: 10px;
+      right: auto;
+   }
+}
