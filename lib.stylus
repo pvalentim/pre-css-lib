@@ -1,0 +1,116 @@
+//
+// Create triangle shape
+//
+// Parameters:
+// - width (px)
+// - height (px)
+// - colour
+// - direction (top/bottom/left/right)
+//
+
+triangle(w, h, c, d='top')
+  width 0px
+  height 0px
+  border-style solid
+  if d == 'top'
+    border-width 0 (w/2) h (w/2)
+    border-color transparent transparent c transparent
+  if d == 'bottom'
+    border-width h (w/2) 0 (w/2)
+    border-color c transparent transparent transparent
+  if d == 'left'
+    border-width (h/2) w (h/2) 0
+    border-color transparent c transparent transparent
+  if d == 'right'
+    border-width (h/2) 0 (h/2) w
+    border-color transparent transparent transparent c
+
+//
+// Create paper shadow like effect
+//
+// Parameters:
+// - bottom (px)
+// - height (px)
+// - colour
+//
+
+paper-shadow(bottom = 20px, height = 15px, color=#333333)
+  display block
+  position relative
+  &:after, &:before
+    z-index -1
+    content ''
+    width 50%
+    position absolute
+    top 80%
+    bottom bottom
+    box-shadow 0 height 8px color
+    background white
+
+  &:after
+    transform rotate(3deg)
+    right 10px
+    left auto
+  &:before
+    transform rotate(-3deg)
+    left 10px
+    right auto
+
+//
+// Image replacement
+//
+
+ir()
+  &:before
+    content ''
+    display block
+    width 0
+    height 150%
+  background-color transparent
+  border 0
+  overflow hidden
+  *text-indent -9999px
+
+
+//
+// Media Queries with fallback for IE
+//
+//  Parameteres:
+//  - media (media query string)
+//  - content (mixin)
+//
+
+respond-to(media, content, args...)
+  if $oldie
+    content(args)
+  else
+    @media media
+      content(args)
+
+//
+// Borders
+//
+//  Parameteres:
+//  - sides (top/left/bottom/right)
+//  - args (border styles) ex: 1px solid red
+//
+
+border-sides(sides, args...)
+  for side in sides
+    border-{side} args
+
+//
+// MATH Utils
+//
+
+// Converts degrees to radians
+
+toRad(degrees)
+  degrees * PI / 180
+
+// Finds X,Y points based on radius and angle
+
+circleEquationX(start, radius, angle)
+  start + radius * cos(toRad(angle))
+circleEquationY(start, radius, angle)
+  start + radius * sin(toRad(angle))
